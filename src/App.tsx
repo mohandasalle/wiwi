@@ -577,7 +577,7 @@ function App() {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-30 w-14 h-14 rounded-full bg-gradient-to-br from-purple-500/30 to-violet-600/30 backdrop-blur-md border border-purple-400/40 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_25px_rgba(167,139,250,0.6)] animate-fade-in"
+          className="fixed bottom-8 left-8 z-30 w-14 h-14 rounded-full bg-gradient-to-br from-purple-500/30 to-violet-600/30 backdrop-blur-md border border-purple-400/40 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_25px_rgba(167,139,250,0.6)] animate-fade-in"
           title="Scroll to top"
         >
           <ArrowUp className="w-6 h-6 text-purple-300" />
