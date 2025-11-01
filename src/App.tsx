@@ -352,7 +352,7 @@ function App() {
       {/* Audio Control Button */}
       <button
         onClick={toggleAudio}
-        className="absolute top-8 right-8 z-20 w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/20 to-violet-600/20 backdrop-blur-md border border-purple-400/30 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(167,139,250,0.5)]"
+        className="absolute top-8 left-8 z-20 w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/20 to-violet-600/20 backdrop-blur-md border border-purple-400/30 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(167,139,250,0.5)]"
         title={isPlaying ? "Pause music" : "Play music"}
       >
         {isPlaying ? (
