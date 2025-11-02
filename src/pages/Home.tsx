@@ -167,9 +167,24 @@ function Home() {
     setSubmitMessage('');
 
     try {
+      const userAgent = navigator.userAgent;
+      let ipAddress = null;
+
+      try {
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        ipAddress = ipData.ip;
+      } catch (ipError) {
+        console.log('Could not fetch IP address');
+      }
+
       const { error } = await supabase
         .from('waitlist')
-        .insert([{ email: emailInput.trim() }]);
+        .insert([{
+          email: emailInput.trim(),
+          user_agent: userAgent,
+          ip_address: ipAddress
+        }]);
 
       if (error) {
         if (error.code === '23505') {

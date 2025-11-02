@@ -45,11 +45,16 @@ function WaitlistAdmin() {
     const isAuth = sessionStorage.getItem('wiwi_admin_auth') === 'true';
     if (isAuth) {
       setIsAuthenticated(true);
-      fetchWaitlist();
     } else {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchWaitlist();
+    }
+  }, [isAuthenticated, sortOrder]);
 
   const fetchWaitlist = async () => {
     try {
@@ -100,7 +105,6 @@ function WaitlistAdmin() {
 
   const toggleSortOrder = () => {
     setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc');
-    fetchWaitlist();
   };
 
   const filteredEntries = entries.filter(entry =>
@@ -150,10 +154,21 @@ function WaitlistAdmin() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
+        <div className="flex items-center justify-center mb-8 pt-4">
+          <div className="text-center">
+            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-purple-200 via-purple-100 to-purple-200 text-transparent bg-clip-text mb-4 tracking-tight">
+              WiWi
+            </h1>
+            <p className="text-purple-200/80 text-lg md:text-xl font-light tracking-wide">
+              Your AI Companion for Spiritual Wellness
+            </p>
+          </div>
+        </div>
+
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 md:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">WiWi Waitlist</h1>
+              <h2 className="text-3xl font-bold text-white mb-2">Waitlist Dashboard</h2>
               <p className="text-purple-200/70">
                 Total Entries: <span className="font-semibold text-purple-300">{entries.length}</span>
               </p>
