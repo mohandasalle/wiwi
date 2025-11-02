@@ -497,6 +497,9 @@ function Home() {
             <a href="#" className="hover:text-purple-300 transition-colors duration-300 hover:underline">
               Contact
             </a>
+            <a href="/waitlistadmin" className="hover:text-purple-300 transition-colors duration-300 hover:underline">
+              Admin
+            </a>
           </div>
 
           <div className="flex items-center gap-4">
