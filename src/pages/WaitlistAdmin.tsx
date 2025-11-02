@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { Lock, Download, RefreshCw, Mail, Calendar, Globe, Monitor, LogOut } from 'lucide-react';
 
@@ -11,6 +12,7 @@ interface WaitlistEntry {
 }
 
 function WaitlistAdmin() {
+  const navigate = useNavigate();
   const [entries, setEntries] = useState<WaitlistEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,6 +41,7 @@ function WaitlistAdmin() {
     setPassword('');
     sessionStorage.removeItem('wiwi_admin_auth');
     setEntries([]);
+    navigate('/');
   };
 
   useEffect(() => {
