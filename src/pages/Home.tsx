@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Mic, Moon, Star, Sparkles, Zap, Sun, Cloud, Heart, Eye, Volume2, VolumeX, ArrowUp, Facebook, Instagram, Linkedin, type LucideIcon } from 'lucide-react';
-import backgroundImage from './assets/edited background.png';
-import { supabase } from './lib/supabase';
-import { useCounterAnimation } from './hooks/useCounterAnimation';
+import backgroundImage from '../assets/edited background.png';
+import { supabase } from '../lib/supabase';
+import { useCounterAnimation } from '../hooks/useCounterAnimation';
 
 interface SpiritualSymbol {
   x: number;
@@ -14,7 +14,7 @@ interface SpiritualSymbol {
   startY: number;
 }
 
-function App() {
+function Home() {
   const [input, setInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [stars, setStars] = useState<Array<{ x: number; y: number; size: number; delay: number }>>([]);
@@ -191,26 +191,20 @@ function App() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       />
 
-      {/* Cosmic Color Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e27] via-[#1a1b3e] to-[#2d1b4e] opacity-50" />
 
-      {/* Deep Purple Gradient Layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a1b3e]/50 via-[#2d1b4e]/40 to-[#4a2c5e]/30" />
 
-      {/* Radial Vignette Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(10,14,39,0.3)_70%,rgba(10,14,39,0.6)_100%)]" />
 
-      {/* Ambient Nebula Glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
 
-      {/* Animated Stars */}
       <div className="absolute inset-0">
         {stars.map((star, i) => (
           <div
@@ -228,7 +222,6 @@ function App() {
         ))}
       </div>
 
-      {/* Falling Spiritual Symbols */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {spiritualSymbols.map((symbol, i) => {
           const IconComponent = symbol.icon;
@@ -260,7 +253,6 @@ function App() {
         })}
       </div>
 
-      {/* Gemini Constellation */}
       <svg className="absolute top-0 right-0 pointer-events-none" width="400" height="400" viewBox="0 0 400 400">
         <defs>
           <filter id="glow">
@@ -272,7 +264,6 @@ function App() {
           </filter>
         </defs>
 
-        {/* Gemini constellation lines */}
         <g className="animate-shimmer" filter="url(#glow)">
           <line x1="50" y1="80" x2="100" y2="50" stroke="#a78bfa" strokeWidth="1.5" opacity="0.15" />
           <line x1="100" y1="50" x2="170" y2="70" stroke="#a78bfa" strokeWidth="1.5" opacity="0.15" />
@@ -292,7 +283,6 @@ function App() {
         </g>
       </svg>
 
-      {/* Logo */}
       <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20">
         <div className="flex flex-col items-center">
           <h1 className="text-6xl font-black tracking-tighter text-white text-center" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800 }}>
@@ -304,10 +294,8 @@ function App() {
         </div>
       </div>
 
-      {/* AI Astrologer Hero Section - After Logo */}
       <div className="absolute top-44 left-1/2 -translate-x-1/2 z-20 w-full max-w-5xl px-4">
         <div className="flex flex-col items-center">
-          {/* Users Badge */}
           <div className={`mb-4 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-2 shadow-lg transition-all duration-700 ${
             isAnimating ? 'animate-badge-entrance' : ''
           }`}>
@@ -325,20 +313,17 @@ function App() {
             </div>
           </div>
 
-          {/* Rotating Hero Messages */}
           <div
             className="relative min-h-[140px] flex flex-col items-center justify-center"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {/* Main Heading - Slides left to right */}
             <div className={`${isTransitioning ? 'animate-fadeOutToRight' : 'animate-fadeInFromLeft'}`}>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-white mb-3 leading-tight">
                 {heroMessages[currentMessageIndex].heading}
               </h2>
             </div>
 
-            {/* Subheading - Slides right to left */}
             <div className={`${isTransitioning ? 'animate-fadeOutToLeft' : 'animate-fadeInFromRight'}`}>
               <p className="text-center text-purple-100/80 text-lg md:text-xl max-w-2xl leading-relaxed">
                 {heroMessages[currentMessageIndex].subtext}
@@ -348,7 +333,6 @@ function App() {
         </div>
       </div>
 
-      {/* Audio Control Button */}
       <button
         onClick={toggleAudio}
         className="absolute top-8 left-8 z-20 w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/20 to-violet-600/20 backdrop-blur-md border border-purple-400/30 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(167,139,250,0.5)]"
@@ -361,10 +345,8 @@ function App() {
         )}
       </button>
 
-      {/* Main UI Container */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
         <div className="flex flex-col items-center space-y-8 max-w-2xl w-full" style={{ marginTop: '400px' }}>
-          {/* Voice Button */}
           <button
             onClick={handleVoiceClick}
             className="group relative w-20 h-20 rounded-full bg-gradient-to-br from-purple-500/20 to-violet-600/20 backdrop-blur-md border border-purple-400/30 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(167,139,250,0.6)] animate-pulse-glow"
@@ -373,12 +355,10 @@ function App() {
             <div className="absolute inset-0 rounded-full bg-purple-400/20 blur-xl group-hover:bg-purple-400/40 transition-all" />
           </button>
 
-          {/* Welcome Text */}
           <p className="text-center text-purple-100/70 text-lg font-light leading-relaxed max-w-xl px-4 mt-8">
             You've entered a space of calm and clarity. Here, every question echoes through the cosmos — and WiWi listens with wisdom, empathy, and light.
           </p>
 
-          {/* Chat Input Section */}
           <form onSubmit={handleSubmit} className="w-full space-y-4">
             <div className="relative">
               <input
@@ -398,7 +378,6 @@ function App() {
             </button>
           </form>
 
-          {/* Reality Section */}
           <div className="w-full max-w-5xl mt-16 px-4">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 bg-gradient-to-r from-purple-300 to-violet-300 bg-clip-text text-transparent">
               The State of Our Minds
@@ -470,7 +449,6 @@ function App() {
               </p>
             </div>
 
-            {/* Email CTA Section */}
             <div className="mt-16 max-w-5xl mx-auto">
               <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 items-stretch">
                 <input
@@ -490,7 +468,6 @@ function App() {
                 </button>
               </form>
 
-              {/* Success/Error Message */}
               {submitMessage && (
                 <div className="mt-4 text-center animate-fadeInUp">
                   <p className={`font-light ${submitMessage.includes('wrong') ? 'text-red-300' : 'text-purple-200'}`} style={{ fontSize: '14px' }}>
@@ -500,13 +477,11 @@ function App() {
               )}
             </div>
 
-            {/* Spacer */}
             <div className="h-[100px]"></div>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="w-full bg-black/40 backdrop-blur-md border-t border-purple-400/20 py-8 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-wrap justify-center md:justify-start gap-6 text-purple-200/70 text-sm">
@@ -572,7 +547,6 @@ function App() {
         </div>
       </footer>
 
-      {/* Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
@@ -586,4 +560,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
